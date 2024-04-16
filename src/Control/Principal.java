@@ -77,7 +77,7 @@ public class Principal {
 		String nombre = sc.next();
 		System.out.println("Creditos de el Curso.");
 		int creditos = sc.nextInt();
-		this.plataforma.crearCurso(id, nombre, creditos);
+		this.plataforma.ModificarCurso(id, nombre, creditos);
 	}
 
 	private void ImprimirCursos() {
