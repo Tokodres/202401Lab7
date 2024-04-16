@@ -26,7 +26,7 @@ public class Plataforma implements Serializable {
 
 	public void ModificarCurso(int id, String nombre,int creditos) throws Exception {
 		if(!this.cursos.containsKey(id)) {
-			throw new Exception("Ya existe un curso con esta id");
+			throw new Exception("No existe un curso con esta id");
 		}else {
 			Curso curso = new Curso(id, nombre, creditos);
 			cursos.replace(id, curso);
