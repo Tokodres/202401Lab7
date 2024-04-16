@@ -8,6 +8,7 @@ import Modelo.Curso;
 import Modelo.Plataforma;
 import Persistencia.ArchivoSerializable;
 
+
 public class Principal {
 	Plataforma plataforma;
 
@@ -76,13 +77,14 @@ public class Principal {
 		String nombre = sc.next();
 		System.out.println("Creditos de el Curso.");
 		int creditos = sc.nextInt();
-		this.plataforma.ActualizarCurso(id, nombre, creditos);
+		this.plataforma.crearCurso(id, nombre, creditos);
 	}
 
 	private void ImprimirCursos() {
 		System.out.println("Id1\tNombre\tCreditos");
-		for(Curso cursos: this.plataforma.getCursos()) {
-			System.out.println(cursos);
+		for(Integer id : this.plataforma.getCursos().keySet()) {
+			Curso curso = this.plataforma.getCursos().get(id);
+			System.out.println(curso);
 		}
 	}
 	

@@ -1,41 +1,25 @@
 package Modelo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class Plataforma implements Serializable {
-	private ArrayList<Curso> cursos;
-	
-	public ArrayList<Curso> getCursos() {
+	private HashMap<Integer, Curso> cursos;
+
+	public HashMap<Integer, Curso> getCursos() {
 		return cursos;
 	}
 
 	public Plataforma() {
-		this.cursos = new ArrayList<Curso>();
+		this.cursos = new HashMap<Integer, Curso>();
 	} 
-
-	public boolean existeIdCurso(int id) {
-		for(Curso curso: this.cursos) {
-			if(curso.getId() == id) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean existeNombreCorso(String Nombre) {
-		for(Curso curso: this.cursos) {
-			if(curso.Nombre.equalsIgnoreCase(Nombre)) {
-				return true;
-			}
-		}
-		return false;
-	}
 	
 	public int PosicionCurso(int id) {
 		int cont = 0, i = 0;
-		if(this.existeIdCurso(id)) {
-			for(Curso curso: this.cursos) {
+		if(this.cursos.containsKey(id)) {
+			for(Integer Id: this.cursos.keySet()) {
+				Curso curso = this.cursos.get(Id);
 				cont ++;
 				if(curso.getId() == id) {			
 					i = cont;
@@ -46,23 +30,11 @@ public class Plataforma implements Serializable {
 	}
 	
 	public void crearCurso(int id, String nombre,int creditos) throws Exception {
-		if(this.existeIdCurso(id)) {
+		if(this.cursos.containsKey(id)) {
 			throw new Exception("Ya existe un curso con esta id");
-		}else if(this.existeNombreCorso(nombre)) {
-			throw new Exception("Ya existe un curso con ese nombre");
 		}else {
 			Curso curso = new Curso(id, nombre, creditos);
-			cursos.add(curso);
-		}
-	}
-	
-	
-	public void ActualizarCurso(int id, String nombre, int creditos) throws Exception {
-		if(!this.existeIdCurso(id)) {
-			throw new Exception("No Existe un curso con esa id");
-		}else {
-			Curso curso = new Curso(id, nombre, creditos);
-			cursos.set(this.PosicionCurso(id), curso);
+			cursos.put(id, curso);
 		}
 	}
 }
