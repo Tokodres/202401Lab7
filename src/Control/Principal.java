@@ -15,35 +15,47 @@ public class Principal {
 		this.plataforma = new Plataforma();
 		this.menu();
 	}
+	
+	public static void main(String args[]) {
+		new Principal();
+	}
 
 	private void menu() {
 		Scanner sc = new Scanner(System.in);
 		int opc = 0;
-		try {
-			System.out.println("Seleccione.");
-			System.out.println("0.Salir.");
-			System.out.println("1.Agregar un Curso.");
-			System.out.println("2.Consultar Cursos.");
-			System.out.println("3.Actualizar Cursos");
-			System.out.println("4.Almacenar Cursos");
-			System.out.println("5.Cargar Cursos");
-			opc = sc.nextInt();
-			if(opc == 0) {
-				System.exit(0);
-			}else if(opc == 1) {
-				this.crearCurso(sc);
-			}else if(opc == 2) {
-				this.ImprimirCursos();
-			}else if(opc == 3) {
-				this.ModificarCurso(sc);
-			}else if(opc == 4) {
-				this.AlmacenarS();
-			}else if(opc == 5) {
-				this.CargarS();
-			}
-		}catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		
+			do {
+				try {
+					System.out.println("Seleccione.");
+					System.out.println("0.Salir.");
+					System.out.println("1.Agregar un Curso.");
+					System.out.println("2.Consultar Cursos.");
+					System.out.println("3.Actualizar Cursos");
+					System.out.println("4.Almacenar Cursos");
+					System.out.println("5.Cargar Cursos");
+					opc = sc.nextInt();
+					if(opc == 0) {
+						System.exit(0);
+					}else if(opc == 1) {
+						this.crearCurso(sc);
+					}else if(opc == 2) {
+						this.ImprimirCursos();
+					}else if(opc == 3) {
+						this.ModificarCurso(sc);
+					}else if(opc == 4) {
+						this.AlmacenarS();
+					}else if(opc == 5) {
+						this.CargarS();
+					}
+				}catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+					
+					
+				
+			}while(opc !=0);
+			
+		
 	}
 
 	private void crearCurso(Scanner sc) throws Exception {

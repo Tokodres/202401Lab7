@@ -25,7 +25,7 @@ public class Plataforma implements Serializable {
 	
 	public boolean existeNombreCorso(String Nombre) {
 		for(Curso curso: this.cursos) {
-			if(curso.Nombre.equalsIgnoreCase(null)) {
+			if(curso.Nombre.equalsIgnoreCase(Nombre)) {
 				return true;
 			}
 		}
@@ -58,10 +58,8 @@ public class Plataforma implements Serializable {
 	
 	
 	public void ActualizarCurso(int id, String nombre, int creditos) throws Exception {
-		if(this.existeIdCurso(id)) {
-			throw new Exception("Ya existe un curso con esta id");
-		}else if(this.existeNombreCorso(nombre)) {
-			throw new Exception("Ya existe un curso con ese nombre");
+		if(!this.existeIdCurso(id)) {
+			throw new Exception("No Existe un curso con esa id");
 		}else {
 			Curso curso = new Curso(id, nombre, creditos);
 			cursos.set(this.PosicionCurso(id), curso);
